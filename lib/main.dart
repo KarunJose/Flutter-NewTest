@@ -1,9 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:new_test/view/home_view.dart';
 import 'package:new_test/view/login_view.dart';
 import 'package:new_test/view/register_view.dart';
-void main() {
+import 'package:new_test/view/verify_email.dart';
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -19,7 +22,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: const LoginView(),
+      
+      routes: {
+        '/login/':(context) => const LoginView(),
+        '/register/':(context) => const RegisterView()
+      },
     );
   }
 }
